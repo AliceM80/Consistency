@@ -18,13 +18,13 @@ public class TransactionTest {
         Transaction transaction = new Transaction();
         transaction.createTransaction();
         transaction.insertTransaction();
-        Assert.assertEquals(0, countRecords());
+        Assert.assertEquals(4, countRecords());
     }
 
     private int countRecords() {
         int total = 0;
         try (Connection connection = DBConnection.getConnection(); Statement stmt = connection.createStatement()) {
-            String sql = "SELECT COUNT(*) AS total FROM WORK ";
+            String sql = "SELECT COUNT(*) AS total FROM REGISTRATION ";
             ResultSet count = stmt.executeQuery(sql);
             while(count.next()){
                 total = count.getInt("total");

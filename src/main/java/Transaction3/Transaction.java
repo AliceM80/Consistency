@@ -38,8 +38,10 @@ public class Transaction {
         Connection connection = DBConnection.getConnection();
         try (Statement stmt = connection.createStatement()) {
             DataManagement.insertDataIntoWorkTable(stmt);
-            if connection.commit();
-            DataManagement.insertDataIntoRegistrationTable(stmt);
+            int countRecords = DataManagement.insertDataIntoRegistrationTable(stmt);
+            if (countRecords < 5) {
+                connection.rollback();
+            }
             connection.commit(); // DO NOT REMOVE THIS LINE
         } catch (SQLException e) {
             e.printStackTrace();

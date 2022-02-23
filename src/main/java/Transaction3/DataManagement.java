@@ -10,7 +10,7 @@ public class DataManagement {
     public static void sqlCreateTable(Statement statement) throws SQLException {
         dropTable(statement);
         String sql = "CREATE TABLE IF NOT EXISTS REGISTRATION " +
-                "(id IDENTITY NOT NULL PRIMARY KEY, " +
+                "(id SERIAL NOT NULL PRIMARY KEY, " +
                 " name VARCHAR(10), " +
                 " lastName VARCHAR(10), " +
                 " age INTEGER)";
@@ -26,6 +26,7 @@ public class DataManagement {
     public static int insertDataIntoRegistrationTable(Statement statement) throws SQLException {
         String sql = "INSERT INTO Registration VALUES (default, 'Zara', 'Ali', 18);" +
                 "INSERT INTO Registration VALUES (default, 'Mahnaz', 'Fatma', 25);" +
+                "INSERT INTO Registration VALUES (default, 'Mahnaz1', 'Fatma', 25);" +
                 "INSERT INTO Registration VALUES (default, 'Zaid', 'Khan', 30);" +
                 "INSERT INTO Registration VALUES(default, 'Sumit', 'Mittal', 28)";
         return statement.executeUpdate(sql);
